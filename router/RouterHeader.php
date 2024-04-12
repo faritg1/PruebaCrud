@@ -32,7 +32,12 @@ class RouterHeader {
             break;
 
         case "put":
-            $resource->Put($this->data, $this->$id);
+            if ($id && $id == "update")
+                if ($id && is_numeric($id)) {
+                    $resource->Put($this->data, $id);
+                } else {
+                    echo "Error";
+                }
             break;
 
         case "delete":

@@ -13,8 +13,6 @@ class CategoryController{
     }
 
     public function Get(){
-
-
         $stmt = $this->connection->prepare("SELECT * FROM category");
         $stmt->execute();
         $rel = $stmt->get_result()->fetch_all();
@@ -27,18 +25,18 @@ class CategoryController{
     }
 
     public function Post($data){
-        $stmt = $this->connection->prepare("INSERT INTO category (Name) VALUES(?);"); 
-        $stmt->bind_param("s", $data['Name']);
-        $stmt->execute();
-        header("Location: http://localhost/pruebacrud/public/category");
-        $stmt->close();
+            $stmt = $this->connection->prepare("INSERT INTO category (Name) VALUES(?);"); 
+            $stmt->bind_param("s", $data['Name']);
+            $stmt->execute();
+            header("Location: http://localhost/pruebacrud/public/category");
+            $stmt->close();
     }
 
     public function Put($data, $id){
-        $stmt = $this->connection->prepare("UPDATE category SET Name =?, UpdatedAt =? WHERE Id =?");
-        $stmt->bind_param("ssi", $data['Name'], $data['UpdatedAt'], $id);
+        $stmt = $this->connection->prepare("UPDATE category SET Name = ? WHERE Id = ?");
+        $stmt->bind_param("si", $data['Name'], $id); // Solo necesitas pasar el nombre y el ID
         $stmt->execute();
-        echo "Se han actualizado {$stmt->affected_rows} fila";
+        require("../resources/views/category/categoryPut.php");
         $stmt->close();
     }
 

@@ -22,6 +22,8 @@
                             <th scope="col">Name</th>
                             <th scope="col">Date Create</th>
                             <th scope="col">Date Update</th>
+                            <th scope="col">     </th>
+                            <th scope="col">     </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,6 +32,16 @@
                                 <?php foreach ($fila as $value): ?>
                                     <td><?= $value ?></td>
                                 <?php endforeach; ?>
+                                <td>
+                                    <a href="http://localhost/pruebacrud/resources/views/category/categoryPut.php?id=<?= $fila[0] ?>?name=<?= $fila[1]?>">
+                                        <button type="button" class="btn btn-success">Actualizar</button>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#">
+                                        <button type="button" class="btn btn-danger">Eliminar</button>
+                                    </a>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

@@ -25,19 +25,18 @@ class ProductController{
     }
 
     public function Post($data){
-        
-        $stmt = $this->connection->prepare("INSERT INTO product (Code, Name, Price, CategoryId) VALUES(?,?,?,?);");
-        $stmt->bind_param("ssii", $data['Code'], $data['Name'], $data['Price'], $data['CategoryId']);
-        $stmt->execute();
-        header("Location: http://localhost/pruebacrud/public/product");
-        $stmt->close();
+            $stmt = $this->connection->prepare("INSERT INTO product (Code, Name, Price, CategoryId) VALUES(?,?,?,?);");
+            $stmt->bind_param("ssii", $data['Code'], $data['Name'], $data['Price'], $data['CategoryId']);
+            $stmt->execute();
+            header("Location: http://localhost/pruebacrud/public/product");
+            $stmt->close();
     }
 
     public function Put($data, $id){
-        $stmt = $this->connection->prepare("UPDATE product SET Code=?, Name=?, Price=?, CategoryId=?, UpdatedAt=? WHERE Id =?");
-        $stmt->bind_param("ssiisi", $data['Code'], $data['Name'], $data['Price'], $data['CategoryId'], $data['UpdatedAt'], $id);
+        $stmt = $this->connection->prepare("UPDATE product SET Code=?, Name=?, Price=?, CategoryId=? WHERE Id =?");
+        $stmt->bind_param("ssiii", $data['Code'], $data['Name'], $data['Price'], $data['CategoryId'], $id);
         $stmt->execute();
-        echo "Se han actualizado put {$stmt->affected_rows} fila";
+        require("../resources/views/product/productPut.php");
         $stmt->close();
     }
     

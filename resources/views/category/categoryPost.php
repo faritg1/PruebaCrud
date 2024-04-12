@@ -16,9 +16,9 @@
             <div class="col-md-9">
                 <form  action="category" method="post">
                     <label class="form-label" for="Name">Nombre</label>
-                    <input class="form-control" type="text" name="Name" id="Name">
+                    <input class="form-control" type="text" name="Name" id="Name" required>
                     <input type="hidden" name="method" value="post">
-                    <button type="submit" class="btn btn-primary mt-2">Guardar</button>
+                    <button name="" type="submit" class="btn btn-primary mt-2" >Guardar</button>
                 </form>
             </div>
         </div>
