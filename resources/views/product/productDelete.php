@@ -3,7 +3,7 @@ if (!empty($_GET["id"])) {
     $id = $_GET["id"];
 
     if (isset($_GET["confirm"]) && $_GET["confirm"] === "yes") {
-        header("Location: http://localhost/pruebacrud/public/category/delete?id=$id");
+        header("Location: http://localhost/pruebacrud/public/product/delete?id=$id");
         exit;
     } else {
         ?>
@@ -16,12 +16,11 @@ if (!empty($_GET["id"])) {
             <title>Confirmar eliminación</title>
         </head>
         <body>
-
-        <h1 class="text-center">Eliminar producto</h1>
+            <h1 class="text-center">Eliminar producto</h1>
             <p class="text-center">¿Estás seguro de que deseas eliminar el producto con ID <?= $id ?>?</p>
             <div class="text-center">
-                <a class="btn btn-danger" href="http://localhost/pruebacrud/public/category/delete?id=<?= $id ?>&confirm=yes">Sí, eliminar</a>
-                <a class="btn btn-success" href="http://localhost/pruebacrud/public/category/">Cancelar</a>
+                <a class="btn btn-danger" href="http://localhost/pruebacrud/public/product/delete?id=<?= $id ?>&confirm=yes">Sí, eliminar</a>
+                <a class="btn btn-success" href="http://localhost/pruebacrud/public/product/">Cancelar</a>
             </div>
         </body>
         </html>

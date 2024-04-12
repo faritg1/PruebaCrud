@@ -45,15 +45,8 @@ class ProductController{
         $stmt = $this->connection->prepare("DELETE FROM product WHERE Id =?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
-
+        require("../resources/views/product/productDelete.php");
         $sure = strtoupper(readline("¿Desea eliminarlo?"));
-        if($sure == "SI"){
-            $this->connection->commit();
-            echo "Se ha eliminado correctamente";
-        }else{
-            $this->connection->rollback();
-            echo "No se ha eliminado";
-        }
         $stmt->close(); 
     }
 }

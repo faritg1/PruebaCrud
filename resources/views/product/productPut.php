@@ -1,6 +1,5 @@
 <?php
 $id = $_GET["Id"] ?? "";
-$name = $_GET["Code"] ?? "";     
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +17,7 @@ $name = $_GET["Code"] ?? "";
             <form action="category" method="put">
             <label class="form-label" for="Name">Nombre</label>
             <label class="form-label" for="Code">Code</label>
-                    <input class="form-control" type="text" name="Code" id="Code" value="<?= htmlspecialchars($code) ?>"required>
+                    <input class="form-control" type="text" name="Code" id="Code" required>
 
                     <label class="form-label" for="Name">Name</label>
                     <input class="form-control" type="text" name="Name" id="Name" required>

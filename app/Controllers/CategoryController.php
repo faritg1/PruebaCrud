@@ -45,15 +45,7 @@ class CategoryController{
         $stmt = $this->connection->prepare("DELETE FROM category WHERE Id =?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
-
-        $sure = strtoupper(readline("¿Desea eliminarlo?"));
-        if($sure == "SI"){
-            $this->connection->commit();
-            echo "Se ha eliminado correctamente";
-        }else{
-            $this->connection->rollback();
-            echo "No se ha eliminado";
-        }
+        require("../resources/views/categoryDelete.php");
         $stmt->close(); 
     }
 }
