@@ -13,20 +13,13 @@ class CategoryController{
     }
 
     public function Get(){
+
+
         $stmt = $this->connection->prepare("SELECT * FROM category");
         $stmt->execute();
         $rel = $stmt->get_result()->fetch_all();
         require("../resources/views/category/categoryGet.php");
-        /* echo "<pre>";
-        print_r($rel);
-        echo "</pre>";
-
-        foreach ($rel as $fila) {
-            foreach ($fila as $valor) {
-                echo $valor . ' '; 
-            }
-            echo '<br>'; 
-        } */
+        $stmt->close();
     }
 
     public function create() {
@@ -34,11 +27,10 @@ class CategoryController{
     }
 
     public function Post($data){
-        $stmt = $this->connection->prepare("INSERT INTO category (Name, CreatedAt, UpdatedAt) VALUES(?,?,?);"); 
-        $stmt->bind_param("sss", $data['Name'], $data['CreatedAt'], $data['UpdatedAt']);
+        $stmt = $this->connection->prepare("INSERT INTO category (Name) VALUES(?);"); 
+        $stmt->bind_param("s", $data['Name']);
         $stmt->execute();
-        echo "Se han insertado en categoria {$stmt->affected_rows} fila";
-        header("Location: http://localhost/pruebacrud/resources/views/category/categoryGet.php");
+        header("Location: http://localhost/pruebacrud/public/category");
         $stmt->close();
     }
 

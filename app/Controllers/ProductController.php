@@ -16,24 +16,20 @@ class ProductController{
         $stmt = $this->connection->prepare("SELECT * FROM product");
         $stmt->execute();
         $rel = $stmt->get_result()->fetch_all();
-        echo "<pre>";
-        print_r($rel);
-        echo "</pre>";
-
-        foreach ($rel as $fila) {
-            foreach ($fila as $valor) {
-                echo $valor . ' '; 
-            }
-            echo '<br>'; 
-        }
+        require("../resources/views/product/productGet.php");
         $stmt->close();
     }
 
+    public function create() {
+        require("../resources/views/product/productPost.php");
+    }
+
     public function Post($data){
-        $stmt = $this->connection->prepare("INSERT INTO product (Code, Name, Price, CategoryId, CreatedAt, UpdatedAt) VALUES(?,?,?,?,?,?);");
-        $stmt->bind_param("ssiiss", $data['Code'], $data['Name'], $data['Price'], $data['CategoryId'], $data['CreatedAt'], $data['UpdatedAt']);
+        
+        $stmt = $this->connection->prepare("INSERT INTO product (Code, Name, Price, CategoryId) VALUES(?,?,?,?);");
+        $stmt->bind_param("ssii", $data['Code'], $data['Name'], $data['Price'], $data['CategoryId']);
         $stmt->execute();
-        echo "Se han insertado en producto {$stmt->affected_rows} fila";
+        header("Location: http://localhost/pruebacrud/public/product");
         $stmt->close();
     }
 
