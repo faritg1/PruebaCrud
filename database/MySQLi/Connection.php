@@ -10,7 +10,7 @@ class Connection{
         $this->make_connection();
     }
 
-    private static function getInstance(){
+    public static function getInstance(){
         if(!self::$instance instanceof self){
             self::$instance = new self();
         }
