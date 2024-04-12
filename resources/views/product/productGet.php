@@ -38,7 +38,7 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="#">
+                                    <a href="http://localhost/pruebacrud/resources/views/product/productDelete.php?id=<?= $fila[0] ?>">
                                         <button type="button" class="btn btn-danger">Eliminar</button>
                                     </a>
                                 </td>

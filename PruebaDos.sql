@@ -55,3 +55,21 @@ INSERT INTO `prestamo` (`id`, `libro_id`, `fecha_prestamo`, `fecha_devolucion`, 
 	(13, 1, '2024-02-08', NULL, 1),
 	(14, 2, '2024-02-12', '2024-02-19', 2),
 	(15, 3, '2024-02-18', NULL, 3);
+
+/* Query 1 */
+SELECT l.titulo 'Título del Libro', l.autor 'Autor del Libro',  CONCAT(u.nombre, ' ', u.apellido) 'Nombre del Usuario',
+	p.fecha_prestamo 'Fecha de Préstamo', p.fecha_devolucion'Fecha de Devolución'
+FROM prestamo p
+JOIN libro l ON p.libro_id = l.id
+JOIN usuario u ON p.usuario_id = u.id
+WHERE p.fecha_devolucion IS NULL;
+
+/* Query 2 */
+SELECT l.titulo 'Título del Libro', l.autor 'Autor del Libro', 
+	CONCAT(u.nombre, ' ', u.apellido) 'Nombre del Usuario',
+	p.fecha_prestamo 'Fecha de Préstamo'
+FROM prestamo p
+JOIN libro l ON p.libro_id = l.id
+JOIN usuario u ON p.usuario_id = u.id
+WHERE p.fecha_devolucion IS NULL
+AND p.fecha_prestamo <= DATE_SUB(CURDATE(), INTERVAL 7 DAY);
