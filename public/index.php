@@ -21,15 +21,15 @@ switch ($resource) {
 
     case 'category':
         $method = $_POST["method"] ?? "get";
-        $router->set_method($method);
-        $router->set_data($_POST);
+        $router->setMethod($method);
+        $router->setData($_POST);
         $router->route(CategoryController::class, $id);
         break;
 
     case 'product':
         $method = $_POST["method"] ?? "get";
-        $router->set_method($method);
-        $router->set_data($_POST);
+        $router->setMethod($method);
+        $router->setData($_POST);
         $router->route(ProductController::class, $id);
         break;
     

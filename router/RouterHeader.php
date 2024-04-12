@@ -6,11 +6,11 @@ class RouterHeader {
     protected $method;
     protected $data;
 
-    public function set_method($method) {
+    public function setMethod($method) {
         $this->method = $method;
     }
 
-    public function set_data($data) {
+    public function setData($data) {
         $this->data = $data;
     }
 
@@ -21,6 +21,9 @@ class RouterHeader {
         switch($this->method) {
 
         case "get":
+            if ($id && $id == "create")
+                $resource->create();
+            else
                 $resource->Get();
             break;
 

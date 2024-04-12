@@ -7,7 +7,7 @@ class Connection{
     private $connection;
 
     private function __construct(){
-        $this->make_connection();
+        $this->makeConnection();
     }
 
     public static function getInstance(){
@@ -21,7 +21,7 @@ class Connection{
         return $this->connection;
     }
 
-    private function make_connection(){
+    private function makeConnection(){
         $server = "localhost";
         $database = "pruebauno";
         $username = "root";
