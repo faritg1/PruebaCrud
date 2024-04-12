@@ -37,7 +37,28 @@ class ProductController{
         $stmt->close();
     }
 
-    public function Put(){}
+    public function Put($data, $id){
+        $stmt = $this->connection->prepare("UPDATE product SET Code=?, Name=?, Price=?, CategoryId=?, UpdatedAt=? WHERE Id =?");
+        $stmt->bind_param("ssiisi", $data['Code'], $data['Name'], $data['Price'], $data['CategoryId'], $data['UpdatedAt'], $id);
+        $stmt->execute();
+        echo "Se han actualizado put {$stmt->affected_rows} fila";
+        $stmt->close();
+    }
     
-    public function Delete(){}
+    public function Delete($id){
+        $this->connection->begin_transaction();
+        $stmt = $this->connection->prepare("DELETE FROM product WHERE Id =?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+
+        $sure = strtoupper(readline("¿Desea eliminarlo?"));
+        if($sure == "SI"){
+            $this->connection->commit();
+            echo "Se ha eliminado correctamente";
+        }else{
+            $this->connection->rollback();
+            echo "No se ha eliminado";
+        }
+        $stmt->close(); 
+    }
 }
